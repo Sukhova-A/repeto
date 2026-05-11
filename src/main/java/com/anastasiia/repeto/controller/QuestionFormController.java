@@ -1,29 +1,22 @@
 package com.anastasiia.repeto.controller;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.anastasiia.repeto.model.Answer;
 import com.anastasiia.repeto.model.Question;
 import com.anastasiia.repeto.model.QuestionType;
 import com.anastasiia.repeto.service.QuestionService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import org.sqlite.util.StringUtils;
 
 public class QuestionFormController {
 
@@ -102,7 +95,6 @@ public class QuestionFormController {
             return;
         }
 
-        // Создаём DTO и сохраняем через сервис
         Question question = new Question()
                 .setText(questionText.getText())
                 .setTag(tagText.getText())

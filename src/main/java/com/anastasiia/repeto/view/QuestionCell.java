@@ -1,6 +1,5 @@
 package com.anastasiia.repeto.view;
 
-import com.anastasiia.repeto.controller.ListController;
 import com.anastasiia.repeto.model.Question;
 import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;

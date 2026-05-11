@@ -7,7 +7,6 @@ import com.anastasiia.repeto.service.QuestionService;
 import com.anastasiia.repeto.view.QuestionCell;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
