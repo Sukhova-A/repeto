@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.anastasiia.repeto.controller.MainController"
+      spacing="20"
+      prefHeight="300"
+      prefWidth="200"
+      maxHeight="Infinity"
+      maxWidth="Infinity"
+      alignment="TOP_CENTER">
+
+    <padding>
+        <Insets top="20" bottom="20" right="20" left="20"/>
+    </padding>
+
+    <Label text="Repeto App" alignment="CENTER" maxWidth="Infinity" textAlignment="CENTER"
+    style="-fx-font-size: 20px; -fx-font-weight: bold"/>
+
+    <VBox spacing="0" maxHeight="Infinity" VBox.vgrow="ALWAYS" alignment="CENTER">
+        <Region VBox.vgrow="ALWAYS"/>
+        <Button text="Начать тест" onAction="#startTest" disable="true" style="-fx-font-size: 16px"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Button text="Добавить вопрос" onAction="#openQuestionForm" style="-fx-font-size: 16px"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Button text="Список вопросов" onAction="#showQuestionList" style="-fx-font-size: 16px"/>
+        <Region VBox.vgrow="ALWAYS"/>
+    </VBox>
+</VBox>

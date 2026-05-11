@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.anastasiia.repeto.controller.ListController"
+            prefHeight="500.0" prefWidth="600.0" alignment="TOP_CENTER">
+
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                style="-fx-background-color: transparent; -fx-border-color: transparent">
+
+        <ListView fx:id="questionListView"/>
+    </ScrollPane>
+</VBox>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.anastasiia.repeto.controller.QuestionFormController"
+            prefHeight="500.0" prefWidth="600.0" alignment="TOP_CENTER">
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+    style="-fx-background-color: transparent; -fx-border-color: transparent">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" bottom="15" right="15" left="15"/>
+            </padding>
+
+            <TextField fx:id="tagText" promptText="Введите тег"/>
+            <TextArea fx:id="questionText" promptText="Введите вопрос" style="-fx-font-size: 15px"
+                      prefRowCount="3" wrapText="true"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <ComboBox fx:id="questionType" promptText="Тип вопроса" maxWidth="Infinity">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Одиночный выбор"/>
+                            <String fx:value="Множественный выбор"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+
+            <VBox fx:id="answersContainer" spacing="8"/>
+
+            <Button text="Добавить ответ" onAction="#addAnswer" style="-fx-text-fill: white; -fx-base: #2196F3"/>
+            <Button text="Сохранить" onAction="#saveQuestion" style="-fx-text-fill: white; -fx-base: #4CAF50"/>
+
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red" visible="false"/>
+        </VBox>
+    </ScrollPane>
+
+</VBox>
