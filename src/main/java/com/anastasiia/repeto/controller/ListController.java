@@ -52,7 +52,6 @@ public class ListController {
         if (isLoading) {
             return;
         }
-
         isLoading = true;
 
         new Thread(() -> {

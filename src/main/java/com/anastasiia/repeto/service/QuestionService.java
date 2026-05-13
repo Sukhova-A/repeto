@@ -45,7 +45,11 @@ public class QuestionService {
         return true;
     }
 
-    public List<Question> loadQuestions(int loadedCount, int pageSize) {
-        return List.of(new Question().setTag("bbb").setText("aaa").setQuestionType(QuestionType.SINGLE_CHOICE));
+    public List<Question> loadQuestions(int offset, int pageSize) {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            return questionRepository.loadPage(conn, offset, pageSize);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
