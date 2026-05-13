@@ -120,7 +120,8 @@ public class QuestionFormController {
             answers.add(answer);
         }
 
-        questionService.createQuestionWIthAnswers(question, answers);
+        boolean success = questionService.createQuestionWIthAnswers(question, answers);
+        System.out.println("Question saved: " + success);
 
         resetForm();
     }

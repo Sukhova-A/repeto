@@ -20,7 +20,7 @@ public class DatabaseManager {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     tag TEXT,
                     text TEXT NOT NULL,
-                    type TEXTNOT NULL
+                    type TEXT NOT NULL
                 );
             """);
             st.execute("""

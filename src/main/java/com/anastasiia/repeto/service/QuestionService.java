@@ -28,18 +28,20 @@ public class QuestionService {
         if (!validatorService.questionWithAnswersValidate(question, answers)) {
             return false;
         }
+        System.out.println("Validation passed");
 
         try (Connection conn = DatabaseManager.getConnection()){
             conn.setAutoCommit(false);
             Question savedQuestion = questionRepository.save(conn, question);
 
             for (Answer answer : answers) {
-                answer.setId(savedQuestion.getId());
+                answer.setQuestionId(savedQuestion.getId());
                 answerRepository.save(conn, answer);
             }
 
             conn.commit();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
         return true;
