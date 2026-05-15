@@ -9,11 +9,16 @@
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.anastasiia.repeto.controller.ListController"
-            prefHeight="500.0" prefWidth="600.0" alignment="TOP_CENTER">
+            prefHeight="500.0" prefWidth="600.0" alignment="TOP_CENTER" minWidth="250" minHeight="300">
 
     <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
                 style="-fx-background-color: transparent; -fx-border-color: transparent">
 
-        <ListView fx:id="questionListView"/>
+        <TableView fx:id="questionTableView" prefHeight="500" prefWidth="600">
+            <columns>
+                <TableColumn fx:id="questionColumn" text="Вопрос"/>
+                <TableColumn fx:id="tagColumn" text="Тег"/>
+            </columns>
+        </TableView>
     </ScrollPane>
 </VBox>

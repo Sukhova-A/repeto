@@ -4,13 +4,16 @@ import java.util.List;
 
 import com.anastasiia.repeto.model.Question;
 import com.anastasiia.repeto.service.QuestionService;
-import com.anastasiia.repeto.view.QuestionCell;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 public class ListController {
 
@@ -20,9 +23,12 @@ public class ListController {
 
     @FXML
     private ScrollPane scrollPane;
-
     @FXML
-    private ListView<Question> questionListView;
+    private TableView<Question> questionTableView;
+    @FXML
+    private TableColumn<Question, String> questionColumn;
+    @FXML
+    private TableColumn<Question, String> tagColumn;
 
     private ObservableList<Question> questions = FXCollections.observableArrayList();
 
@@ -34,16 +40,74 @@ public class ListController {
 
     @FXML
     public void initialize() {
-        questionListView.setItems(questions);
-        questionListView.setCellFactory(param -> new QuestionCell());
+        questionTableView.setItems(questions);
 
-        scrollPane.vvalueProperty().addListener(((observableValue, number, t1) -> {
-            if (number != null && !isLoading && t1.doubleValue() >= 0.9) {
+        questionColumn.setCellValueFactory(new PropertyValueFactory<>("text"));
+        questionColumn.setCellFactory(new Callback<>() {
+            @Override
+            public TableCell<Question, String> call(TableColumn<Question, String> questionStringTableColumn) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+                            setText(item);
+                            setStyle("-fx-text-fill: #333; -fx-font-weight: bold; -fx-alignment: CENTER-LEFT");
+                        }
+                    }
+                };
+            }
+        });
+
+        tagColumn.setCellValueFactory(new PropertyValueFactory<>("tag"));
+        tagColumn.setCellFactory(new Callback<>() {
+            @Override
+            public TableCell<Question, String> call(TableColumn<Question, String> questionStringTableColumn) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+                            setText(item);
+                            setStyle("-fx-text-fill: #666; -fx-font-size: 12px; -fx-background-color: #f0f0f0; "
+                                    + "-fx-padding: 2px 8px; -fx-border-radius: 8px;");
+                        }
+                    }
+                };
+            }
+        });
+
+        questionColumn.setPrefWidth(500);
+        tagColumn.setPrefWidth(100);
+        tagColumn.setMaxWidth(150);
+        tagColumn.setMinWidth(100);
+
+        questionTableView.applyCss();
+        questionTableView.layout();
+
+        questionTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        Platform.runLater(() -> {
+            questionTableView.applyCss();
+            questionTableView.layout();
+            System.out.println("Final tag column width: " + tagColumn.getWidth());
+        });
+
+        scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !isLoading && newValue.doubleValue() >= 0.9) {
                 loadQuestions();
             }
-        }));
-        System.out.println("count: " + questions.size());
+        });
 
+        System.out.println("count: " + questions.size());
         loadQuestions();
     }
 
@@ -63,5 +127,4 @@ public class ListController {
             });
         }).start();
     }
-
 }

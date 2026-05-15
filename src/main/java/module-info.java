@@ -10,6 +10,7 @@ module com.anastasiia.repeto {
     exports com.anastasiia.repeto;
     exports com.anastasiia.repeto.service;
     exports com.anastasiia.repeto.controller;
+    exports com.anastasiia.repeto.model;
     opens com.anastasiia.repeto.service to javafx.fxml;
     opens com.anastasiia.repeto.controller to javafx.fxml;
 }
